@@ -1,0 +1,43 @@
+name: "Docker Image Build"
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "image/**"
+      - ".github/workflows/image.yaml"
+
+jobs:
+  build:
+    name: QHub Build Dockerfile
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dockerfile:
+          - jupyterlab
+          - jupyterhub
+          - dask-worker
+    steps:
+      - name: 'Checkout Image'
+        uses: actions/checkout@master
+
+      - name: Docker Login
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        env:
+          DOCKER_USERNAME: ${{ secrets.docker_username }}
+          DOCKER_PASSWORD: ${{ secrets.docker_password }}
+      - name: Docker Build, Tag, and Push Image
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+          # due to digitalocean not having a public container registry (beta)
+          # https://www.digitalocean.com/products/container-registry/
+          IMAGE_NAME: quansight/qhub-jupytercon-demo-${{ matrix.dockerfile }}
+        run: |
+          docker build -f image/Dockerfile.${{ matrix.dockerfile }} -t $IMAGE_NAME:$IMAGE_TAG image
+          docker push $IMAGE_NAME:$IMAGE_TAG
+      - name: Docker Logout
+        run: |
+          docker logout
+
