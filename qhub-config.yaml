@@ -24,6 +24,11 @@ security:
       primary_group: users
       secondary_groups:
         - admin
+    tonyfast:
+      uid: 1005
+      primary_group: users
+      secondary_groups:
+        - quansight
   groups:
     users:
       gid: 100
@@ -31,6 +36,8 @@ security:
       gid: 101
     billing:
       gid: 102
+    quansight:
+      gid: 103
 
 
 digital_ocean:
@@ -115,6 +122,7 @@ environments:
       - numpy
       - numba
       - pandas
+      - flask
 
   "environment-example-2.yaml":
     name: example-2
