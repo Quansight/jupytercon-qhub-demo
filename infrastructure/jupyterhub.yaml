@@ -12,9 +12,9 @@ hub:
 
   extraConfig:
     01-spawner: |
-      QHUB_USER_MAPPING = {'costrouc': {'uid': 1000, 'primary_group': 'users', 'secondary_groups': ['billing']}, 'dharhas': {'uid': 1001, 'primary_group': 'admin'}, 'aktech': {'uid': 1004, 'primary_group': 'users', 'secondary_groups': ['admin']}}
-      QHUB_GROUP_MAPPING = {'users': {'gid': 100}, 'admin': {'gid': 101}, 'billing': {'gid': 102}}
-      QHUB_PROFILES = [{'display_name': 'Small Instance', 'description': 'Stable environment with 1 cpu / 1 GB ram', 'groups': ['admin'], 'kubespawner_override': {'cpu_limit': 1, 'cpu_guarantee': 1, 'mem_limit': '1G', 'mem_guarantee': '1G', 'image': 'quansight/qhub-jupyterlab:4c8c28332be1fde32f786c54a5961b5f3d789e16'}}, {'display_name': 'Medium Instance', 'description': 'Stable environment with 1.5 cpu / 2 GB ram', 'default': True, 'kubespawner_override': {'cpu_limit': 1.5, 'cpu_guarantee': 1.25, 'mem_limit': '2G', 'mem_guarantee': '2G', 'image': 'quansight/qhub-jupyterlab:4c8c28332be1fde32f786c54a5961b5f3d789e16'}}]
+      QHUB_USER_MAPPING = {'costrouc': {'uid': 1000, 'primary_group': 'users', 'secondary_groups': ['billing']}, 'dharhas': {'uid': 1001, 'primary_group': 'admin'}, 'aktech': {'uid': 1004, 'primary_group': 'users', 'secondary_groups': ['admin']}, 'tonyfast': {'uid': 1005, 'primary_group': 'users', 'secondary_groups': ['quansight']}}
+      QHUB_GROUP_MAPPING = {'users': {'gid': 100}, 'admin': {'gid': 101}, 'billing': {'gid': 102}, 'quansight': {'gid': 103}}
+      QHUB_PROFILES = [{'display_name': 'Small Instance', 'description': 'Stable environment with 1 cpu / 1 GB ram', 'groups': ['admin'], 'kubespawner_override': {'cpu_limit': 1, 'cpu_guarentee': 1, 'mem_limit': '1G', 'mem_guarentee': '1G', 'image': 'quansight/qhub-jupyterlab:4c8c28332be1fde32f786c54a5961b5f3d789e16'}}, {'display_name': 'Medium Instance', 'description': 'Stable environment with 1.5 cpu / 2 GB ram', 'default': True, 'kubespawner_override': {'cpu_limit': 1.5, 'cpu_guarentee': 1.25, 'mem_limit': '2G', 'mem_guarentee': '2G', 'image': 'quansight/qhub-jupyterlab:4c8c28332be1fde32f786c54a5961b5f3d789e16'}}]
 
 
       def qhub_generate_nss_files():
