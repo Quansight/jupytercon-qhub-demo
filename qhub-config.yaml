@@ -29,6 +29,11 @@ security:
       primary_group: users
       secondary_groups:
         - quansight
+    tylerpotts:
+      uid: 1006
+      primary_group: users
+      secondary_groups:
+        - quansight
   groups:
     users:
       gid: 100
